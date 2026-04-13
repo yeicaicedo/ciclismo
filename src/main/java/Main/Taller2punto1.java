@@ -8,6 +8,13 @@ package Main;
  *
  * @author USUARIO
  */
-public class Taller2punto1 {
-    
+import Controlador.Controlador;
+import Vista.Vista;
+
+public class Taller2punto1{
+    public static void main(String[] args) {
+        Vista vista = new Vista();
+        Controlador Controlador = new Controlador();
+        Controlador.iniciar();
+    }
 }
