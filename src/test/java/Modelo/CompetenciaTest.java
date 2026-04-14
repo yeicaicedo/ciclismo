@@ -22,30 +22,29 @@ public class CompetenciaTest {
     }
     
     @Test
-    public void testFlujoCompleto() {
+     public void testCalcularRanking() {
 
-        // Crear competencia
-        Competencia comp = new Competencia("Olimpiadas");
+        Competencia comp = new Competencia("Mundial");
 
-        // Crear equipo
-        Equipo e = new Equipo("Eagles", "Colombia");
-        comp.agregarEquipo(e);
+        Equipo e1 = new Equipo("Eagles", "Colombia");
+        Equipo e2 = new Equipo("Lions", "USA");
 
-        // Crear competidor
-        Competidor c = new Competidor("Ana", 20, 1.70, 60, "Colombia", 0);
-        e.agregarCompetidor(c);
+        Competidor c1 = new Competidor("Ana", 20, 1.6, 55, "Colombia", 0);
+        Competidor c2 = new Competidor("Juan", 22, 1.7, 60, "USA", 0);
+        
+        
+        c1.actualizarRanking(20); 
+        c2.actualizarRanking(10); 
 
-        // Asignar puntos
-        c.actualizarRanking(10);
+        e1.agregarCompetidor(c1);
+        e2.agregarCompetidor(c2);
 
-        // Calcular ranking
+        comp.agregarEquipo(e1);
+        comp.agregarEquipo(e2);
+
         comp.calcularRanking();
 
-        // Generar reporte
-        String reporte = comp.generarReporte();
-
-        // VALIDACIONES MÁS SEGURAS
-        assertNotNull(reporte, "Fallo");
-        assertFalse(reporte.isEmpty(), "Fallo");
+        assertEquals(1, c1.getRankingMundial());
+        assertEquals(2, c2.getRankingMundial());
     }
 }

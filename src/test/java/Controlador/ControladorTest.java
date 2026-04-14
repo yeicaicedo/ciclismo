@@ -10,6 +10,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
+import Modelo.Equipo;
+import Modelo.Competencia;
+import Modelo.Competidor;
+
+
 
 /**
  *
@@ -20,32 +25,31 @@ public class ControladorTest {
     public ControladorTest() {
     }
     
-    @BeforeAll
-    public static void setUpClass() {
-    }
-    
-    @AfterAll
-    public static void tearDownClass() {
-    }
-    
-    @BeforeEach
-    public void setUp() {
-    }
-    
-    @AfterEach
-    public void tearDown() {
-    }
-
-    /**
-     * Test of iniciar method, of class Controlador.
-     */
     @Test
-    public void testIniciar() {
-        System.out.println("iniciar");
-        Controlador instance = new Controlador();
-        instance.iniciar();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void testFlujoCompleto() {
+
+        // Crear competencia
+        Competencia comp = new Competencia("Olimpiadas");
+
+        // Crear equipo
+        Equipo e = new Equipo("Eagles", "Colombia");
+        comp.agregarEquipo(e);
+
+        // Crear competidor
+        Competidor c = new Competidor("Ana", 20, 1.70, 60, "Colombia", 0);
+        e.agregarCompetidor(c);
+
+        // Asignar puntos
+        c.actualizarRanking(10);
+
+        // Calcular ranking
+        comp.calcularRanking();
+
+        // Generar reporte
+        String reporte = comp.generarReporte();
+
+        // VALIDACIONES MÁS SEGURAS
+        assertNotNull(reporte, "Fallo");
+        assertFalse(reporte.isEmpty(), "Fallo");
     }
-    
 }
